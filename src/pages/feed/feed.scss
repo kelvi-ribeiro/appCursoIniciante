@@ -2,5 +2,13 @@ page-feed {
     .img-post{
         width: 100%;
     }
+    h2.feed-title {
+        color: red;
+        font-weight: bold;
+    }
+
+    p.feed-date {
+        color: green;
+    }
 
 }
