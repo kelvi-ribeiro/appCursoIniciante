@@ -15,6 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedPage {
 
+  public objeto_feed = {
+    autor:"Kelvi Martins",
+    data:"November 5,1985",
+    descricao:"Criando um app da hora...",
+    qtd_likes:12,
+    qtd_comments:4,
+    time_cooment:"11h ago"
+
+  }
+
   public nomeUsuario:string = "Kelvi Martins Ribeiro"
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
