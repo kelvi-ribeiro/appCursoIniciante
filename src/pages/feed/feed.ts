@@ -51,7 +51,10 @@ export class FeedPage {
     }),error =>{
       console.log(error)
     }
+
+    
     
   }
+  
 
 }

@@ -9,7 +9,7 @@
 
       <ion-card *ngFor="let filme of lista_filmes">
 
-  <ion-item>
+  <ion-item [navPush]="'DetalhesFilmePage'" [navParams]="{filme:filme}">
     <ion-avatar item-start>
       <img src="./assets/imgs/P_20171108_210105_BF.jpg">
     </ion-avatar>
