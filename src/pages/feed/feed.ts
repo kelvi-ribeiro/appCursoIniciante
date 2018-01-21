@@ -13,9 +13,7 @@ import { MoovieProvider } from '../../providers/moovie/moovie';
 @Component({
   selector: 'page-feed',
   templateUrl: 'feed.html',
-  providers:[
-    MoovieProvider
-  ]
+  
 })
 export class FeedPage {
 
