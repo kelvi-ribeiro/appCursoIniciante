@@ -72,27 +72,17 @@ export class FeedPage {
 
   
 
-  doInfinite(infiniteScroll) {
-    this.page++;
-    this.infiniteScroll = infiniteScroll;
-    this.carregarFilmes(true);
-  }
 
-  carregarFilmes(newpage: boolean = false){
+  carregarFilmes(){
     this.abreCarregando();
     this.movieProvider.getLatestMovies(this.page).subscribe(
       data=>{
+        
           const response = (data as any);
           const objeto_retorno = JSON.parse(response._body);
 
-          if(newpage){
-            this.lista_filmes = this.lista_filmes.concat(objeto_retorno.results);
-            console.log(this.page);
-            console.log(this.lista_filmes);
-            this.infiniteScroll.complete();
-          }else{
             this.lista_filmes = objeto_retorno.results;
-          }
+          
 
           this.fechaCarregando();
           if(this.isRefreshing){
@@ -109,5 +99,44 @@ export class FeedPage {
       }
     )
   }
+
+  nextPage(){
+    this.page++;  
+    this.lista_filmes = null  
+    this.carregarFilmes();
+    
+    
+    console.log(this.page)
+
+  }
+
+  previusPage(){
+    if(this.page===1){
+    
+    alert('Você já está primeira página');
+    this.page++;
+    }
+
+    this.page--;
+    
+    this.lista_filmes = null  
+    this.carregarFilmes();
+    
+    console.log(this.page)
+
+  }
+
+  firstPage(){
+    this.page=1;
+    this.lista_filmes = null  
+    
+    this.carregarFilmes();
+    
+    console.log(this.page)
+
+  }
+
+
+
 
 }

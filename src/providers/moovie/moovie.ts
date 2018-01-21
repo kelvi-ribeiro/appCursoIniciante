@@ -18,8 +18,9 @@ export class MoovieProvider {
  
   }
 
-  getLatestMovies(page = 1){
-    return this.http.get(`${this.baseApiPath}movie/popular?${page}&` + this.baseApiKey);
+  getLatestMovies(page){
+    console.log('do prov',page)
+    return this.http.get(`${this.baseApiPath}movie/popular?page=${page}&` + this.baseApiKey);
 
   }
 

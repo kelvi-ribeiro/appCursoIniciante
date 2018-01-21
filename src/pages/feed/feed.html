@@ -54,8 +54,20 @@
 
 </ion-card>
 
-<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  <ion-col>
+    <ion-row>
+     
+      <ion-col col-4>
+          <button ion-button small color="dark"(click)="previusPage()">Anterior</button>
+      </ion-col>
+      <ion-col col-4>
+          <button ion-button small color="default" (click)="nextPage()">Próxima</button>
+      </ion-col>
+      <ion-col col-4>
+          <button ion-button small color="secondary" (click)="firstPage()">Primeira</button>
+      </ion-col>
+    </ion-row>
+  </ion-col>   
+  
 
 </ion-content>
