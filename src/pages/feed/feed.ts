@@ -18,6 +18,8 @@ import { MoovieProvider } from '../../providers/moovie/moovie';
 export class FeedPage {
 
   public loader;
+  public refresher;
+  public isRefreshing:boolean = false;
 
   public objeto_feed = {
     autor:"Kelvi Martins",
@@ -43,6 +45,12 @@ export class FeedPage {
   }
 
   ionViewDidEnter() {
+   this.carregarFilmes();
+    
+    
+  }
+
+  carregarFilmes(){
     this.abreCarregando();
     this.movieProvider.getLatestMovies().subscribe(data=>{
     const response =  data as any 
@@ -50,13 +58,22 @@ export class FeedPage {
     this.lista_filmes = objeto_retorno.results
     console.log(objeto_retorno);
     this.fechaCarregando();
+    
+    if(this.isRefreshing){
+      
+      this.refresher.complete();
+      this.isRefreshing = false;
+      
+    }
     }),error =>{
       console.log(error);
-      this.fechaCarregando();
+      this.fechaCarregando();      
+      if(this.isRefreshing){
+        this.refresher.complete();
+        this.isRefreshing = false;
+      }
     }
 
-    
-    
   }
 
   abreCarregando() {
@@ -70,6 +87,14 @@ export class FeedPage {
   fechaCarregando(){
     this.loader.dismiss();
   }
+
+  doRefresh(refresher) {
+    this.refresher = refresher
+    this.isRefreshing = true;
+    this.carregarFilmes();
+    
+  }
+
 
   
 
