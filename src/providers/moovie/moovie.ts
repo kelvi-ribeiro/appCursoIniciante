@@ -18,8 +18,13 @@ export class MoovieProvider {
  
   }
 
-  getLatestMovies(){
-    return this.http.get(`${this.baseApiPath}movie/popular?${this.baseApiKey}`);
+  getLatestMovies(page = 1){
+    return this.http.get(`${this.baseApiPath}movie/popular?${page}&` + this.baseApiKey);
+
+  }
+
+  getMoviesDetails(filmeId){
+    return this.http.get(`${this.baseApiPath}movie/${filmeId}?${this.baseApiKey}`);
 
   }
 

@@ -15,6 +15,24 @@
 
 <ion-content padding>
 
-  <h2 *ngIf="filme">parabéns, chegou em <span class="filme">{{filme.title}}</span></h2>
+ 
+    <ion-card *ngIf="filme">
+
+        <ion-item >
+          <ion-avatar item-start>
+            <img src="./assets/imgs/P_20171108_210105_BF.jpg">
+          </ion-avatar>
+          <h2 class="feed-title">{{filme.original_title}}</h2>
+          <p class="feed-date">{{filme.release_date}}</p>
+        </ion-item>
+      
+        <img class="img-post" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path">
+      
+        <ion-card-content>
+          <p>{{filme.overview}}</p>
+        </ion-card-content>
+      
+      </ion-card>
+          
 
 </ion-content>

@@ -17,7 +17,7 @@
 
       <ion-card *ngFor="let filme of lista_filmes">
 
-  <ion-item [navPush]="'DetalhesFilmePage'" [navParams]="{filme:filme}">
+  <ion-item >
     <ion-avatar item-start>
       <img src="./assets/imgs/P_20171108_210105_BF.jpg">
     </ion-avatar>
@@ -50,7 +50,12 @@
       </ion-note>
     </ion-col>
   </ion-row>
+  <button ion-button block [navPush]="'DetalhesFilmePage'" [navParams]="{id:filme.id}">Detalhes do Filme</button>
 
 </ion-card>
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
