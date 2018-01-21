@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MoovieProvider } from '../../providers/moovie/moovie';
 
 /**
@@ -17,6 +17,8 @@ import { MoovieProvider } from '../../providers/moovie/moovie';
 })
 export class FeedPage {
 
+  public loader;
+
   public objeto_feed = {
     autor:"Kelvi Martins",
     data:"November 5,1985",
@@ -32,27 +34,43 @@ export class FeedPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private movieProvider:MoovieProvider) {
+    private movieProvider:MoovieProvider,
+    public loadingCtrl: LoadingController) {
   }
 
   public somaDoisNumeros(num1:number,num2:number):void{
     alert(num1+num2);
   }
 
-  ionViewDidLoad() {
-
+  ionViewDidEnter() {
+    this.abreCarregando();
     this.movieProvider.getLatestMovies().subscribe(data=>{
     const response =  data as any 
     const objeto_retorno = JSON.parse(response._body)
     this.lista_filmes = objeto_retorno.results
-    console.log(objeto_retorno)
+    console.log(objeto_retorno);
+    this.fechaCarregando();
     }),error =>{
-      console.log(error)
+      console.log(error);
+      this.fechaCarregando();
     }
 
     
     
   }
+
+  abreCarregando() {
+     this.loader = this.loadingCtrl.create({
+      content: "Carregando filmes...",
+     
+    });
+    this.loader.present();
+  }
+
+  fechaCarregando(){
+    this.loader.dismiss();
+  }
+
   
 
 }
